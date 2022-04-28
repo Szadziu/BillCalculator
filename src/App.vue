@@ -1,22 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <BillInput :value="billValue" @onChange="handleBillInput" />
+    <ServiceRating />
+    <CustomButton>Oblicz</CustomButton>
+    <InfoModal />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BillInput from '@/components/BillInput.vue';
+import ServiceRating from '@/components/ServiceRating.vue';
+import CustomButton from '@/components/CustomButton.vue';
+import InfoModal from '@/components/InfoModal.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    BillInput,
+    ServiceRating,
+    CustomButton,
+    InfoModal,
+  },
+  data: function () {
+    return { billValue: 25 };
+  },
+  methods: {
+    handleBillInput(value) {
+      this.billValue = value;
+    },
+  },
+};
 </script>
 
-<style>
+<style module>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
